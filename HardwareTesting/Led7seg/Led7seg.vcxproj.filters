@@ -11,15 +11,30 @@
     </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Hardware">
+      <UniqueIdentifier>{dc762d44-8b0a-438c-b1c3-5dc6dec9b409}</UniqueIdentifier>
+      <Extensions>tif</Extensions>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="Led7seg.ino" />
+    <None Include="Hardware\pinMapping.docx">
+      <Filter>Hardware</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="__vm\.Led7seg.vsarduino.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Hardware\ledSchematic.tif">
+      <Filter>Hardware</Filter>
+    </Image>
+    <Image Include="Hardware\ledParameters.tif">
+      <Filter>Hardware</Filter>
+    </Image>
   </ItemGroup>
 </Project>
