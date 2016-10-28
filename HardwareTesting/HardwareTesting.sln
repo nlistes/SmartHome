@@ -7,6 +7,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Led7seg", "Led7seg\Led7seg.
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DanfosMotorControl", "DanfosMotorControl\DanfosMotorControl.vcxproj", "{F3EA3019-E18F-4C8F-9A3C-970552618812}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MQTT", "MQTT\MQTT.vcxproj", "{9F411EB0-9055-4151-A12A-28A2AC0E66BE}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LCD3Wire", "LCD3Wire\LCD3Wire.vcxproj", "{94C196FD-59DB-44BC-9C30-B96A5C0D4E3A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -21,6 +25,14 @@ Global
 		{F3EA3019-E18F-4C8F-9A3C-970552618812}.Debug|x86.Build.0 = Debug|Win32
 		{F3EA3019-E18F-4C8F-9A3C-970552618812}.Release|x86.ActiveCfg = Release|Win32
 		{F3EA3019-E18F-4C8F-9A3C-970552618812}.Release|x86.Build.0 = Release|Win32
+		{9F411EB0-9055-4151-A12A-28A2AC0E66BE}.Debug|x86.ActiveCfg = Debug|Win32
+		{9F411EB0-9055-4151-A12A-28A2AC0E66BE}.Debug|x86.Build.0 = Debug|Win32
+		{9F411EB0-9055-4151-A12A-28A2AC0E66BE}.Release|x86.ActiveCfg = Release|Win32
+		{9F411EB0-9055-4151-A12A-28A2AC0E66BE}.Release|x86.Build.0 = Release|Win32
+		{94C196FD-59DB-44BC-9C30-B96A5C0D4E3A}.Debug|x86.ActiveCfg = Debug|Win32
+		{94C196FD-59DB-44BC-9C30-B96A5C0D4E3A}.Debug|x86.Build.0 = Debug|Win32
+		{94C196FD-59DB-44BC-9C30-B96A5C0D4E3A}.Release|x86.ActiveCfg = Release|Win32
+		{94C196FD-59DB-44BC-9C30-B96A5C0D4E3A}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
