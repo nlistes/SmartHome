@@ -11,6 +11,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LCD3Wire", "LCD3Wire\LCD3Wi
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "devBoard", "devBoard\devBoard.vcxproj", "{8D8E3865-6472-49A8-B1BB-A7F64BC4D4DF}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MQTT", "MQTT\MQTT.vcxproj", "{EF30A44A-8B67-4876-AB0D-0C2E4BCCA097}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "StrOperations", "StrOperations\StrOperations.vcxproj", "{729A5746-A87E-4024-9CE6-1A2CCB3DC32B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -33,6 +37,14 @@ Global
 		{8D8E3865-6472-49A8-B1BB-A7F64BC4D4DF}.Debug|x86.Build.0 = Debug|Win32
 		{8D8E3865-6472-49A8-B1BB-A7F64BC4D4DF}.Release|x86.ActiveCfg = Release|Win32
 		{8D8E3865-6472-49A8-B1BB-A7F64BC4D4DF}.Release|x86.Build.0 = Release|Win32
+		{EF30A44A-8B67-4876-AB0D-0C2E4BCCA097}.Debug|x86.ActiveCfg = Debug|Win32
+		{EF30A44A-8B67-4876-AB0D-0C2E4BCCA097}.Debug|x86.Build.0 = Debug|Win32
+		{EF30A44A-8B67-4876-AB0D-0C2E4BCCA097}.Release|x86.ActiveCfg = Release|Win32
+		{EF30A44A-8B67-4876-AB0D-0C2E4BCCA097}.Release|x86.Build.0 = Release|Win32
+		{729A5746-A87E-4024-9CE6-1A2CCB3DC32B}.Debug|x86.ActiveCfg = Debug|Win32
+		{729A5746-A87E-4024-9CE6-1A2CCB3DC32B}.Debug|x86.Build.0 = Debug|Win32
+		{729A5746-A87E-4024-9CE6-1A2CCB3DC32B}.Release|x86.ActiveCfg = Release|Win32
+		{729A5746-A87E-4024-9CE6-1A2CCB3DC32B}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
