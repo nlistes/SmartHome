@@ -3,7 +3,7 @@
 */
 
 volatile unsigned int c = 0;
-unsigned long Time1 = 0, Time2 = 0;
+unsigned long now = 0, sendTime = 0;
 char message_buff[50];
 
 void setup()
@@ -14,8 +14,8 @@ void setup()
 
 void loop()
 {
-	Time1 = millis();
-	if (Time1 - Time2 > 5000)
+	now = millis();
+	if (now - sendTime > 5000)
 	{
 		c++;
 		String pubString = String(c);
@@ -25,7 +25,7 @@ void loop()
 		//pubString.toCharArray(message_buff, pubString.length() + 1);
 		//Serial.println(message_buff);
 		//Serial.println(pubString.c_str());
-		Time2 = Time1;
+		sendTime = now;
 	}
 
 }
