@@ -15,27 +15,27 @@ EthernetClient ethClient;
 PubSubClient mqttClient(ethClient);
 unsigned long lastReconnectAttempt = 0;
 
-#define COUNTER_INPUT_PIN 2
+#define COUNTER_INPUT_PIN 5
 Bounce debouncerInputPin = Bounce();
 unsigned int counterInputCount = 0;
 unsigned long counterInputTime = 0;
 
-#define COUNTER_COLLECTOR_PIN 3
+#define COUNTER_COLLECTOR_PIN 6
 Bounce debouncerCollectorPin = Bounce();
 unsigned int counterCollectorCount = 0;
 unsigned long counterCollectorTime = 0;
 
-#define COUNTER_WARMFLOOR_PIN 4
+#define COUNTER_WARMFLOOR_PIN 7
 Bounce debouncerWarmfloorPin = Bounce();
 unsigned int counterWarmfloorCount = 0;
 unsigned long counterWarmfloorTime = 0;
 
-#define COUNTER_FIRSTFLOOR_PIN 5
+#define COUNTER_FIRSTFLOOR_PIN 8
 Bounce debouncerFirstfloorPin = Bounce();
 unsigned int counterFirstfloorCount = 0;
 unsigned long counterFirstfloorTime = 0;
 
-#define COUNTER_SECONDFLOOR_PIN 6
+#define COUNTER_SECONDFLOOR_PIN 9
 Bounce debouncerSecondfloorPin = Bounce();
 unsigned int counterSecondfloorCount = 0;
 unsigned long counterSecondfloorTime = 0;
@@ -105,9 +105,9 @@ void loop()
 			counterInputCount++;
 			float b = (3600000.0 / (now - counterInputTime));
 			unsigned long c = b * 1000.0;
-			Serial.print("Count/Input: ");
+			Serial.print("Count: ");
 			Serial.println(counterInputCount);
-			Serial.print("Flow/Input: ");
+			Serial.print("Flow: ");
 			Serial.print(c / 1000);
 			Serial.print(".");
 			Serial.println(c % 1000);
@@ -124,9 +124,9 @@ void loop()
 			counterCollectorCount++;
 			float b = (3600000.0 / (now - counterCollectorTime));
 			unsigned long c = b * 1000.0;
-			Serial.print("Count/Collector: ");
+			Serial.print("Count: ");
 			Serial.println(counterCollectorCount);
-			Serial.print("Flow/Collector: ");
+			Serial.print("Flow: ");
 			Serial.print(c / 1000);
 			Serial.print(".");
 			Serial.println(c % 1000);
@@ -143,9 +143,9 @@ void loop()
 			counterWarmfloorCount++;
 			float b = (3600000.0 / (now - counterWarmfloorTime));
 			unsigned long c = b * 1000.0;
-			Serial.print("Count/Warmfloor: ");
+			Serial.print("Count: ");
 			Serial.println(counterWarmfloorCount);
-			Serial.print("Flow/Warmfloor: ");
+			Serial.print("Flow: ");
 			Serial.print(c / 1000);
 			Serial.print(".");
 			Serial.println(c % 1000);
@@ -154,44 +154,6 @@ void loop()
 			mqttClient.publish("Count/Warmfloor", pubString.c_str());
 			pubString = String(c / 1000);
 			mqttClient.publish("Flow/Warmfloor", pubString.c_str());
-		}
-	}
-	if (debouncerFirstfloorPin.update()) {
-		if (debouncerFirstfloorPin.rose()) {
-			now = millis();
-			counterFirstfloorCount++;
-			float b = (3600000.0 / (now - counterFirstfloorTime));
-			unsigned long c = b * 1000.0;
-			Serial.print("Count/Firstfloor: ");
-			Serial.println(counterFirstfloorCount);
-			Serial.print("Flow/Firstfloor: ");
-			Serial.print(c / 1000);
-			Serial.print(".");
-			Serial.println(c % 1000);
-			counterFirstfloorTime = now;
-			String pubString = String(counterFirstfloorCount);
-			mqttClient.publish("Count/Firstfloor", pubString.c_str());
-			pubString = String(c / 1000);
-			mqttClient.publish("Flow/Firstfloor", pubString.c_str());
-		}
-	}
-	if (debouncerSecondfloorPin.update()) {
-		if (debouncerSecondfloorPin.rose()) {
-			now = millis();
-			counterSecondfloorCount++;
-			float b = (3600000.0 / (now - counterSecondfloorTime));
-			unsigned long c = b * 1000.0;
-			Serial.print("Count/Secondfloor: ");
-			Serial.println(counterSecondfloorCount);
-			Serial.print("Flow/Secondfloor: ");
-			Serial.print(c / 1000);
-			Serial.print(".");
-			Serial.println(c % 1000);
-			counterSecondfloorTime = now;
-			String pubString = String(counterSecondfloorCount);
-			mqttClient.publish("Count/Secondfloor", pubString.c_str());
-			pubString = String(c / 1000);
-			mqttClient.publish("Flow/Secondfloor", pubString.c_str());
 		}
 	}
 }

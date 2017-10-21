@@ -15,27 +15,27 @@ EthernetClient ethClient;
 PubSubClient mqttClient(ethClient);
 unsigned long lastReconnectAttempt = 0;
 
-#define COUNTER_INPUT_PIN 2
+#define COUNTER_INPUT_PIN 5
 Bounce debouncerInputPin = Bounce();
 unsigned int counterInputCount = 0;
 unsigned long counterInputTime = 0;
 
-#define COUNTER_COLLECTOR_PIN 3
+#define COUNTER_COLLECTOR_PIN 6
 Bounce debouncerCollectorPin = Bounce();
 unsigned int counterCollectorCount = 0;
 unsigned long counterCollectorTime = 0;
 
-#define COUNTER_WARMFLOOR_PIN 4
+#define COUNTER_WARMFLOOR_PIN 7
 Bounce debouncerWarmfloorPin = Bounce();
 unsigned int counterWarmfloorCount = 0;
 unsigned long counterWarmfloorTime = 0;
 
-#define COUNTER_FIRSTFLOOR_PIN 5
+#define COUNTER_FIRSTFLOOR_PIN 8
 Bounce debouncerFirstfloorPin = Bounce();
 unsigned int counterFirstfloorCount = 0;
 unsigned long counterFirstfloorTime = 0;
 
-#define COUNTER_SECONDFLOOR_PIN 6
+#define COUNTER_SECONDFLOOR_PIN 9
 Bounce debouncerSecondfloorPin = Bounce();
 unsigned int counterSecondfloorCount = 0;
 unsigned long counterSecondfloorTime = 0;

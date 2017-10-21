@@ -15,6 +15,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MQTT", "MQTT\MQTT.vcxproj",
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "StrOperations", "StrOperations\StrOperations.vcxproj", "{729A5746-A87E-4024-9CE6-1A2CCB3DC32B}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ethTest", "ethTest\ethTest.vcxproj", "{DEE6B85E-5568-452D-9E48-CD1394E10F8F}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Voltage", "Voltage\Voltage.vcxproj", "{CD8EB9B3-D922-4140-8DF5-B0842ED0A3BC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -45,6 +49,14 @@ Global
 		{729A5746-A87E-4024-9CE6-1A2CCB3DC32B}.Debug|x86.Build.0 = Debug|Win32
 		{729A5746-A87E-4024-9CE6-1A2CCB3DC32B}.Release|x86.ActiveCfg = Release|Win32
 		{729A5746-A87E-4024-9CE6-1A2CCB3DC32B}.Release|x86.Build.0 = Release|Win32
+		{DEE6B85E-5568-452D-9E48-CD1394E10F8F}.Debug|x86.ActiveCfg = Debug|Win32
+		{DEE6B85E-5568-452D-9E48-CD1394E10F8F}.Debug|x86.Build.0 = Debug|Win32
+		{DEE6B85E-5568-452D-9E48-CD1394E10F8F}.Release|x86.ActiveCfg = Release|Win32
+		{DEE6B85E-5568-452D-9E48-CD1394E10F8F}.Release|x86.Build.0 = Release|Win32
+		{CD8EB9B3-D922-4140-8DF5-B0842ED0A3BC}.Debug|x86.ActiveCfg = Debug|Win32
+		{CD8EB9B3-D922-4140-8DF5-B0842ED0A3BC}.Debug|x86.Build.0 = Debug|Win32
+		{CD8EB9B3-D922-4140-8DF5-B0842ED0A3BC}.Release|x86.ActiveCfg = Release|Win32
+		{CD8EB9B3-D922-4140-8DF5-B0842ED0A3BC}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
