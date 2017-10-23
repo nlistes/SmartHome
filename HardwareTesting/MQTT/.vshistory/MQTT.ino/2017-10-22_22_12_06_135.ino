@@ -27,10 +27,9 @@ unsigned long iotlastSendTime = 0;
 
 #define COUNTER_INPUT_PIN 2
 Bounce debouncerInputPin = Bounce();
-bool counterInputUpdated = false;
 unsigned int counterInputCount = 0;
 unsigned long counterInputTime = 0;
-unsigned long counterInputFlow = 0;
+unsigned int counterInputFlow = 0;
 
 #define COUNTER_COLLECTOR_PIN 3
 Bounce debouncerCollectorPin = Bounce();
@@ -131,21 +130,19 @@ void loop()
 			iotlastReconnectAttempt = now;
 			// Attempt to reconnect
 			Serial.print("[IOT] Connecting...");
-			iotReconnect();
-			//if (iotReconnect()) { iotlastReconnectAttempt = 0; }
+			if (iotReconnect()) { iotlastReconnectAttempt = 0; }
 		}
 	}
 	else {
 		// Client connected
 		now = millis();
-		if ((now - iotlastSendTime > 15000) & counterInputUpdated) {
+		if (now - iotlastSendTime > 15000) {
 			//String data = String("field1=" + String(t, DEC) + "&field2=" + String(h, DEC) + "&field3=" + String(lightLevel, DEC));
 			String iotString = String("field1=") + String(counterInputFlow / 1000);
-			Serial.println(iotString);
 			// Publish data to ThingSpeak. Replace <YOUR-CHANNEL-ID> with your channel ID and <YOUR-CHANNEL-WRITEAPIKEY> with your write API key
+			Serial.println(iotString);
 			iotClient.publish("channels/344138/publish/MVZK45X89XJ2E8EZ", iotString.c_str());
 			iotlastSendTime = now;
-			counterInputUpdated = false;
 		}
 		iotClient.loop();
 	}
@@ -155,7 +152,6 @@ void loop()
 		if (debouncerInputPin.rose()) {
 			now = millis();
 			counterInputCount++;
-			counterInputUpdated = true;
 			float b = (3600000.0 / (now - counterInputTime));
 			counterInputFlow = b * 1000.0;
 			Serial.print("Count/Input: ");
@@ -164,13 +160,18 @@ void loop()
 			Serial.print(counterInputFlow / 1000);
 			Serial.print(".");
 			Serial.println(counterInputFlow % 1000);
-			counterInputTime = now;
 #ifdef MQTT_ON
 			String pubString = String(counterInputCount);
 			mqttClient.publish("Count/Input", pubString.c_str());
 			pubString = String(c / 1000);
 			mqttClient.publish("Flow/Input", pubString.c_str());
 #endif // MQTT_ON
+#ifdef IOT_ON
+			if (now - counterInputTime > 15000)
+			{
+			}
+#endif // IOT_ON
+			counterInputTime = now;
 		}
 	}
 	if (debouncerCollectorPin.update()) {

@@ -6,9 +6,6 @@
 #include <PubSubClient.h>
 #include <Bounce2.h>
 
-//#define MQTT_ON
-#define IOT_ON
-
 long now = 0;
 
 EthernetClient ethClient;
@@ -23,14 +20,11 @@ unsigned long mqttlastReconnectAttempt = 0;
 #define WRITE_API_KEY "MVZK45X89XJ2E8EZ"
 PubSubClient iotClient(ethClient);
 unsigned long iotlastReconnectAttempt = 0;
-unsigned long iotlastSendTime = 0;
 
 #define COUNTER_INPUT_PIN 2
 Bounce debouncerInputPin = Bounce();
-bool counterInputUpdated = false;
 unsigned int counterInputCount = 0;
 unsigned long counterInputTime = 0;
-unsigned long counterInputFlow = 0;
 
 #define COUNTER_COLLECTOR_PIN 3
 Bounce debouncerCollectorPin = Bounce();
@@ -109,68 +103,52 @@ void setup() {
 
 void loop()
 {
-#ifdef MQTT_ON
 	if (!mqttClient.connected()) {
 		now = millis();
 		if (now - mqttlastReconnectAttempt > 5000) {
 			mqttlastReconnectAttempt = now;
 			// Attempt to reconnect
 			Serial.print("[MQTT] Connecting...");
-			if (mqttReconnect()) { mqttlastReconnectAttempt = 0; }
+			if (mqttReconnect()) {mqttlastReconnectAttempt = 0;}
 		}
-	}
-	else {
+	} else {
 		// Client connected
 		mqttClient.loop();
 	}
-#endif // MQTT_ON
-#ifdef IOT_ON
 	if (!iotClient.connected()) {
 		now = millis();
-		if (now - iotlastReconnectAttempt > 15000) {
+		if (now - iotlastReconnectAttempt > 5000) {
 			iotlastReconnectAttempt = now;
 			// Attempt to reconnect
 			Serial.print("[IOT] Connecting...");
-			iotReconnect();
-			//if (iotReconnect()) { iotlastReconnectAttempt = 0; }
+			if (iotReconnect()) { iotlastReconnectAttempt = 0; }
 		}
 	}
 	else {
 		// Client connected
-		now = millis();
-		if ((now - iotlastSendTime > 15000) & counterInputUpdated) {
-			//String data = String("field1=" + String(t, DEC) + "&field2=" + String(h, DEC) + "&field3=" + String(lightLevel, DEC));
-			String iotString = String("field1=") + String(counterInputFlow / 1000);
-			Serial.println(iotString);
-			// Publish data to ThingSpeak. Replace <YOUR-CHANNEL-ID> with your channel ID and <YOUR-CHANNEL-WRITEAPIKEY> with your write API key
-			iotClient.publish("channels/344138/publish/MVZK45X89XJ2E8EZ", iotString.c_str());
-			iotlastSendTime = now;
-			counterInputUpdated = false;
-		}
 		iotClient.loop();
 	}
-#endif // IOT_ON
-
 	if (debouncerInputPin.update()) {
 		if (debouncerInputPin.rose()) {
 			now = millis();
 			counterInputCount++;
-			counterInputUpdated = true;
 			float b = (3600000.0 / (now - counterInputTime));
-			counterInputFlow = b * 1000.0;
+			unsigned long c = b * 1000.0;
 			Serial.print("Count/Input: ");
 			Serial.println(counterInputCount);
 			Serial.print("Flow/Input: ");
-			Serial.print(counterInputFlow / 1000);
+			Serial.print(c / 1000);
 			Serial.print(".");
-			Serial.println(counterInputFlow % 1000);
+			Serial.println(c % 1000);
 			counterInputTime = now;
-#ifdef MQTT_ON
 			String pubString = String(counterInputCount);
 			mqttClient.publish("Count/Input", pubString.c_str());
 			pubString = String(c / 1000);
 			mqttClient.publish("Flow/Input", pubString.c_str());
-#endif // MQTT_ON
+			//String data = String("field1=" + String(t, DEC) + "&field2=" + String(h, DEC) + "&field3=" + String(lightLevel, DEC));
+			String iotString = String("field1=") + String(c / 1000);
+			// Publish data to ThingSpeak. Replace <YOUR-CHANNEL-ID> with your channel ID and <YOUR-CHANNEL-WRITEAPIKEY> with your write API key
+			iotClient.publish("channels/344138/publish/MVZK45X89XJ2E8EZ", iotString.c_str);
 		}
 	}
 	if (debouncerCollectorPin.update()) {

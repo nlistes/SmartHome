@@ -131,8 +131,7 @@ void loop()
 			iotlastReconnectAttempt = now;
 			// Attempt to reconnect
 			Serial.print("[IOT] Connecting...");
-			iotReconnect();
-			//if (iotReconnect()) { iotlastReconnectAttempt = 0; }
+			if (iotReconnect()) { iotlastReconnectAttempt = 0; }
 		}
 	}
 	else {

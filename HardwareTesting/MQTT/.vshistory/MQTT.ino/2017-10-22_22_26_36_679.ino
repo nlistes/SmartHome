@@ -131,8 +131,7 @@ void loop()
 			iotlastReconnectAttempt = now;
 			// Attempt to reconnect
 			Serial.print("[IOT] Connecting...");
-			iotReconnect();
-			//if (iotReconnect()) { iotlastReconnectAttempt = 0; }
+			if (iotReconnect()) { iotlastReconnectAttempt = 0; }
 		}
 	}
 	else {
@@ -155,7 +154,6 @@ void loop()
 		if (debouncerInputPin.rose()) {
 			now = millis();
 			counterInputCount++;
-			counterInputUpdated = true;
 			float b = (3600000.0 / (now - counterInputTime));
 			counterInputFlow = b * 1000.0;
 			Serial.print("Count/Input: ");
@@ -164,19 +162,25 @@ void loop()
 			Serial.print(counterInputFlow / 1000);
 			Serial.print(".");
 			Serial.println(counterInputFlow % 1000);
-			counterInputTime = now;
 #ifdef MQTT_ON
 			String pubString = String(counterInputCount);
 			mqttClient.publish("Count/Input", pubString.c_str());
 			pubString = String(c / 1000);
 			mqttClient.publish("Flow/Input", pubString.c_str());
 #endif // MQTT_ON
+#ifdef IOT_ON
+			if (now - counterInputTime > 15000)
+			{
+			}
+#endif // IOT_ON
+			counterInputTime = now;
 		}
 	}
 	if (debouncerCollectorPin.update()) {
 		if (debouncerCollectorPin.rose()) {
 			now = millis();
 			counterCollectorCount++;
+			counterInputUpdated = true;
 			float b = (3600000.0 / (now - counterCollectorTime));
 			unsigned long c = b * 1000.0;
 			Serial.print("Count/Collector: ");
