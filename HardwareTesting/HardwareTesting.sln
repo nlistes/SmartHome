@@ -19,6 +19,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ethTest", "ethTest\ethTest.
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Voltage", "Voltage\Voltage.vcxproj", "{CD8EB9B3-D922-4140-8DF5-B0842ED0A3BC}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mqttTS", "mqttTS\mqttTS.vcxproj", "{C6E40685-8E81-45BE-9B33-A4815DC508C2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -57,6 +59,10 @@ Global
 		{CD8EB9B3-D922-4140-8DF5-B0842ED0A3BC}.Debug|x86.Build.0 = Debug|Win32
 		{CD8EB9B3-D922-4140-8DF5-B0842ED0A3BC}.Release|x86.ActiveCfg = Release|Win32
 		{CD8EB9B3-D922-4140-8DF5-B0842ED0A3BC}.Release|x86.Build.0 = Release|Win32
+		{C6E40685-8E81-45BE-9B33-A4815DC508C2}.Debug|x86.ActiveCfg = Debug|Win32
+		{C6E40685-8E81-45BE-9B33-A4815DC508C2}.Debug|x86.Build.0 = Debug|Win32
+		{C6E40685-8E81-45BE-9B33-A4815DC508C2}.Release|x86.ActiveCfg = Release|Win32
+		{C6E40685-8E81-45BE-9B33-A4815DC508C2}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
